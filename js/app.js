@@ -10,6 +10,8 @@
  *   - add each card's HTML to the page
  */
 
+initializeCards();
+
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -25,6 +27,23 @@ function shuffle(array) {
     return array;
 }
 
+function initializeCards(){
+	const fragment = document.createDocumentFragment();
+
+	let cardClasses = ['fa-anchor', 'fa-anchor', 'fa-diamond', 'fa-diamond', 'fa-paper-plane-o','fa-paper-plane-o', 'fa-bolt', 'fa-bolt', 'fa-cube', 'fa-cube', 'fa-leaf', 'fa-leaf', 'fa-bicycle', 'fa-bicycle', 'fa-bomb', 'fa-bomb'];
+	cardClasses = shuffle(cardClasses);
+	
+
+	for (const classCard of cardClasses){
+		let card = document.createElement('div');
+		card.classList.add('card', 'open', 'show', 'fa', classCard);
+		fragment.appendChild(card);
+	}
+
+	document.getElementsByClassName('deck')[0].appendChild(fragment);
+
+
+}
 
 /*
  * set up the event listener for a card. If a card is clicked:
