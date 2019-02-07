@@ -1,7 +1,38 @@
 /*
  * Create a list that holds all of your cards
  */
+let openCards = [];
+let matCards = [];
 
+initializeCards();
+
+document.getElementsByClassName('deck')[0].addEventListener('click', cardClick);
+
+function cardClick(e){
+
+  if (!IsMatched(e) && !IsOpen(e) && openCards.length < 2){
+    openCard(e.target);
+    console.log(openCards);
+  }
+}
+
+function openCard (e){
+
+  e.classList.toggle('open');
+  e.classList.toggle('show');
+  openCards.push(e.target);
+  
+}
+
+function IsMatched (e) {
+
+  return e.target.classList.contains('match')
+}
+
+function IsOpen (e) {
+
+  return e.target.classList.contains('open')
+}
 
 /*
  * Display the cards on the page
@@ -10,7 +41,7 @@
  *   - add each card's HTML to the page
  */
 
-initializeCards();
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -32,16 +63,16 @@ function initializeCards(){
 
 	let cardClasses = ['fa-anchor', 'fa-anchor', 'fa-diamond', 'fa-diamond', 'fa-paper-plane-o','fa-paper-plane-o', 'fa-bolt', 'fa-bolt', 'fa-cube', 'fa-cube', 'fa-leaf', 'fa-leaf', 'fa-bicycle', 'fa-bicycle', 'fa-bomb', 'fa-bomb'];
 	cardClasses = shuffle(cardClasses);
-	
+
 
 	for (const classCard of cardClasses){
 		let card = document.createElement('div');
-		card.classList.add('card', 'open', 'show', 'fa', classCard);
+		card.classList.add('card', 'fa', classCard);
+
 		fragment.appendChild(card);
-	}
+  }
 
-	document.getElementsByClassName('deck')[0].appendChild(fragment);
-
+  document.getElementsByClassName('deck')[0].appendChild(fragment);
 
 }
 
