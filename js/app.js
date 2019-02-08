@@ -12,7 +12,6 @@ function cardClick(e){
 
   if (!IsMatched(e) && !IsOpen(e) && openCards.length < 2){
     openCard(e.target);
-    console.log(openCards);
   }
 }
 
@@ -20,8 +19,29 @@ function openCard (e){
 
   e.classList.toggle('open');
   e.classList.toggle('show');
-  openCards.push(e.target);
-  
+
+  openCards.push(e);
+  if (openCards.length === 2){
+      compareOpenCards();
+  }
+}
+
+function compareOpenCards(){
+  if (compareClasses(openCards[0],openCards[1])) {
+    console.log("Mark cards as matched");
+  }else {
+    console.log("Close open cards");
+  }
+
+}
+
+function compareClasses(a,b){
+  for (const item of a.classList){
+    if (!b.classList.contains(item)){
+      return false;
+    }
+  }
+  return true;
 }
 
 function IsMatched (e) {
