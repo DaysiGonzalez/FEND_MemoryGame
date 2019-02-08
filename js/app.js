@@ -2,7 +2,7 @@
  * Create a list that holds all of your cards
  */
 let openCards = [];
-let matCards = [];
+let matchedCards = [];
 
 initializeCards();
 
@@ -17,10 +17,11 @@ function cardClick(e){
 
 function openCard (e){
 
-  e.classList.toggle('open');
-  e.classList.toggle('show');
+  e.classList.add('open');
+  e.classList.add('show');
 
   openCards.push(e);
+
   if (openCards.length === 2){
       compareOpenCards();
   }
@@ -32,15 +33,31 @@ function compareOpenCards(){
     console.log("Mark cards as matched");
   }else {
     closeOpenCards();
+
+  }
+
+}
+
+function animateWrong(){
+  for (card of openCards){
+    card.classList.toggle('wobble-hor-bottom');
   }
 
 }
 
 function closeOpenCards(){
+
+  animateWrong();
+
   for (card of openCards){
-    card.classList.toggle('open');
-    card.classList.toggle('show');
+    // card.classList.remove('wobble-hor-bottom');
+    card.classList.remove('open');
+    card.classList.remove('show');
+
   }
+
+  openCards = [];
+
 }
 
 function compareClasses(a,b){
@@ -101,6 +118,7 @@ function initializeCards(){
   document.getElementsByClassName('deck')[0].appendChild(fragment);
 
 }
+
 
 /*
  * set up the event listener for a card. If a card is clicked:
