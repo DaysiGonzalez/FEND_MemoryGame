@@ -58,15 +58,16 @@ function closeOpenCards(){
 
    animateWrong();
 
-  for (card of openCards){
-    // card.classList.remove('wobble-hor-bottom');
-    card.classList.remove('open');
-    card.classList.remove('show');
-
-  }
-
-  openCards = [];
-
+   setTimeout(function(){
+     console.log(openCards);
+     for (card of openCards){
+       console.log('closing');
+       card.classList.remove('open');
+       card.classList.remove('show');
+       card.classList.remove('wobble-hor-bottom');
+     }
+     openCards = [];
+   },900);
 }
 
 function compareClasses(a,b){
