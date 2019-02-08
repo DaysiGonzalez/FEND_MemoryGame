@@ -2,7 +2,6 @@
  * Create a list that holds all of your cards
  */
 let openCards = [];
-let matchedCards = [];
 
 initializeCards();
 
@@ -30,7 +29,7 @@ function openCard (e){
 
 function compareOpenCards(){
   if (compareClasses(openCards[0],openCards[1])) {
-    console.log("Mark cards as matched");
+    matchOpenCards();
   }else {
     closeOpenCards();
 
@@ -45,9 +44,19 @@ function animateWrong(){
 
 }
 
+function matchOpenCards(){
+  for (card of openCards){
+    card.classList.toggle('jello-vertical');
+    card.classList.toggle('match');
+    card.classList.toggle('open');
+  }
+  openCards = [];
+}
+
+
 function closeOpenCards(){
 
-  animateWrong();
+   animateWrong();
 
   for (card of openCards){
     // card.classList.remove('wobble-hor-bottom');
