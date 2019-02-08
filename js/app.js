@@ -24,15 +24,23 @@ function openCard (e){
   if (openCards.length === 2){
       compareOpenCards();
   }
+
 }
 
 function compareOpenCards(){
   if (compareClasses(openCards[0],openCards[1])) {
     console.log("Mark cards as matched");
   }else {
-    console.log("Close open cards");
+    closeOpenCards();
   }
 
+}
+
+function closeOpenCards(){
+  for (card of openCards){
+    card.classList.toggle('open');
+    card.classList.toggle('show');
+  }
 }
 
 function compareClasses(a,b){
@@ -45,12 +53,10 @@ function compareClasses(a,b){
 }
 
 function IsMatched (e) {
-
   return e.target.classList.contains('match')
 }
 
 function IsOpen (e) {
-
   return e.target.classList.contains('open')
 }
 
