@@ -17,9 +17,19 @@ function showWinDialog(){
 
 function cardClick(e){
 
-  if (!IsMatched(e) && !IsOpen(e) && openCards.length < 2){
+  if (e.target.classList.contains('card') && !IsMatched(e) && !IsOpen(e) && openCards.length < 2){
+    moves++;
+    refreshMoves();
     openCard(e.target);
   }
+}
+
+function refreshMoves(){
+  let containers = document.getElementsByClassName('moves')
+  for (container of containers){
+    container.innerText = moves;
+  }
+
 }
 
 function openCard (e){
@@ -97,15 +107,6 @@ function IsMatched (e) {
 function IsOpen (e) {
   return e.target.classList.contains('open')
 }
-
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-
-
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
