@@ -5,11 +5,13 @@ let openCards = [];
 let moves = 0;
 let starts = 3;
 
-initializeCards();
+initializeGame();
 
 document.getElementsByClassName('deck')[0].addEventListener('click', cardClick);
 
-document.getElementsByClassName('playAgain')[0].addEventListener('click', initializeCards);
+document.getElementsByClassName('playAgain')[0].addEventListener('click', initializeGame);
+
+document.getElementsByClassName('restart')[0].addEventListener('click', initializeGame);
 
 function showWinDialog(){
   $('#exampleModalCenter').modal('show');
@@ -123,7 +125,10 @@ function shuffle(array) {
     return array;
 }
 
-function initializeCards(){
+function initializeGame(){
+
+  moves = 0;
+  refreshMoves();
 
   $('.card').remove();
 
