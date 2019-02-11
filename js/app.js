@@ -3,7 +3,7 @@
  */
 let openCards = [];
 let moves = 0;
-let starts = 3;
+let stars = 3;
 
 initializeGame();
 
@@ -27,11 +27,22 @@ function cardClick(e){
 }
 
 function refreshMoves(){
-  let containers = document.getElementsByClassName('moves')
+  let containers = document.getElementsByClassName('moves');
   for (container of containers){
     container.innerText = moves;
   }
 
+  if (moves === 21 || moves === 41 || moves === 61){
+    let star = document.getElementsByClassName('fa-star')[0];
+    star.classList.remove('fa-star');
+    star.classList.add('fa-star-o');
+    stars--;
+  }
+
+  containers = document.getElementsByClassName('starsCount');
+  for (container of containers){
+    container.innerText = stars;
+  }
 }
 
 function openCard (e){
@@ -76,7 +87,6 @@ function matchOpenCards(){
   }
 
 }
-
 
 function closeOpenCards(){
 
@@ -125,9 +135,19 @@ function shuffle(array) {
     return array;
 }
 
+function restartStars(){
+  stars = 3;
+  let whiteStars = document.getElementsByClassName('fa-star-o');
+  for (whiteStar of whiteStars){
+    whiteStar.classList.remove('fa-star-o');
+    whiteStar.classList.add('fa-star');
+  }
+}
+
 function initializeGame(){
 
   moves = 0;
+  restartStars();
   refreshMoves();
 
   $('.card').remove();
