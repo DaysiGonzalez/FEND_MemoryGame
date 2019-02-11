@@ -9,9 +9,6 @@ initializeCards();
 
 document.getElementsByClassName('deck')[0].addEventListener('click', cardClick);
 
-document.getElementsByClassName('restart')[0].addEventListener('click', showWinDialog);
-
-
 function showWinDialog(){
   $('#exampleModalCenter').modal('show');
 }
@@ -59,6 +56,11 @@ function matchOpenCards(){
     card.classList.toggle('open');
   }
   openCards = [];
+
+  if (document.getElementsByClassName('match').length === 16) {
+    showWinDialog()
+  }
+
 }
 
 
@@ -67,9 +69,8 @@ function closeOpenCards(){
    animateWrong();
 
    setTimeout(function(){
-     console.log(openCards);
+
      for (card of openCards){
-       console.log('closing');
        card.classList.remove('open');
        card.classList.remove('show');
        card.classList.remove('wobble-hor-bottom');
