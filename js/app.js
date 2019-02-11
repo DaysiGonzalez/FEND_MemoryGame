@@ -138,10 +138,15 @@ function shuffle(array) {
 function restartStars(){
   stars = 3;
   let whiteStars = document.getElementsByClassName('fa-star-o');
-  for (whiteStar of whiteStars){
+  while (document.getElementsByClassName('fa-star-o').length > 0){
+    let whiteStar = document.getElementsByClassName('fa-star-o')[0];
     whiteStar.classList.remove('fa-star-o');
     whiteStar.classList.add('fa-star');
   }
+
+  console.log(document.getElementsByClassName('fa-star'));
+  console.log(document.getElementsByClassName('fa-star-o'));
+
 }
 
 function initializeGame(){
