@@ -9,6 +9,8 @@ initializeCards();
 
 document.getElementsByClassName('deck')[0].addEventListener('click', cardClick);
 
+document.getElementsByClassName('playAgain')[0].addEventListener('click', initializeCards);
+
 function showWinDialog(){
   $('#exampleModalCenter').modal('show');
 }
@@ -121,11 +123,13 @@ function shuffle(array) {
 }
 
 function initializeCards(){
+
+  $('.card').remove();
+
 	const fragment = document.createDocumentFragment();
 
 	let cardClasses = ['fa-anchor', 'fa-anchor', 'fa-diamond', 'fa-diamond', 'fa-paper-plane-o','fa-paper-plane-o', 'fa-bolt', 'fa-bolt', 'fa-cube', 'fa-cube', 'fa-leaf', 'fa-leaf', 'fa-bicycle', 'fa-bicycle', 'fa-bomb', 'fa-bomb'];
 	cardClasses = shuffle(cardClasses);
-
 
 	for (const classCard of cardClasses){
 		let card = document.createElement('div');
