@@ -2,10 +2,19 @@
  * Create a list that holds all of your cards
  */
 let openCards = [];
+let moves = 0;
+let starts = 3;
 
 initializeCards();
 
 document.getElementsByClassName('deck')[0].addEventListener('click', cardClick);
+
+document.getElementsByClassName('restart')[0].addEventListener('click', showWinDialog);
+
+
+function showWinDialog(){
+  $('#exampleModalCenter').modal('show');
+}
 
 function cardClick(e){
 
@@ -32,7 +41,6 @@ function compareOpenCards(){
     matchOpenCards();
   }else {
     closeOpenCards();
-
   }
 
 }

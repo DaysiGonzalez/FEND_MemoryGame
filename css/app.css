@@ -108,7 +108,48 @@ h1 {
     cursor: pointer;
 }
 
-/* animations */
+/*
+ * Styles for the Win panel
+ */
+ .modal {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+ }
+
+ .modal-content {
+   position: absolute;
+   top: 0;
+   right: 0;
+   bottom: 0;
+   left: 0;
+   border: 2px solid #3c7dcf;
+   border-radius: 0;
+   box-shadow: none;
+   width: 100%;
+}
+
+.modal-body,
+.modal-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.playAgain {
+  background-color: #02ccba;
+  color: white;
+}
+
+ /*
+  * Animations
+  */
 .wobble-hor-bottom {
 	-webkit-animation: wobble-hor-bottom 0.8s both;
 	        animation: wobble-hor-bottom 0.8s both;
