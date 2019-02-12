@@ -28,7 +28,7 @@ function clearTimer(){
 }
 
 function showWinDialog(){
-  $('#exampleModalCenter').modal('show');
+  $('#modalWin').modal('show');
 }
 
 function cardClick(e){
@@ -132,11 +132,11 @@ function compareClasses(a,b){
 }
 
 function IsMatched (e) {
-  return e.target.classList.contains('match')
+  return e.target.classList.contains('match');
 }
 
 function IsOpen (e) {
-  return e.target.classList.contains('open')
+  return e.target.classList.contains('open');
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976

@@ -87,11 +87,11 @@ h1 {
 
 .score-panel {
     text-align: left;
-    width: 100%;
+    width: 660px;
     margin-bottom: 10px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content:space-around;
     align-items: center;
 }
 
