@@ -4,6 +4,7 @@
 let openCards = [];
 let moves = 0;
 let stars = 3;
+let t = null;
 
 initializeGame();
 
@@ -83,7 +84,9 @@ function matchOpenCards(){
   openCards = [];
 
   if (document.getElementsByClassName('match').length === 16) {
-    showWinDialog()
+    clearTimeout(t);
+    t = 500;
+    showWinDialog();
   }
 
 }
@@ -143,17 +146,26 @@ function restartStars(){
     whiteStar.classList.remove('fa-star-o');
     whiteStar.classList.add('fa-star');
   }
+}
 
-  console.log(document.getElementsByClassName('fa-star'));
-  console.log(document.getElementsByClassName('fa-star-o'));
-
+function initializeTimer(){
+  clearInterval(t);
+  t = setInterval((function(){
+    var start = Date.now();
+    return function(){
+      containers = document.getElementsByClassName('time');
+      for (container of containers){
+        container.innerText = Math.floor((Date.now()-start)/1000);
+      }
+    };
+  }()), 1000);
 }
 
 function initializeGame(){
-
   moves = 0;
   restartStars();
   refreshMoves();
+  initializeTimer();
 
   $('.card').remove();
 
@@ -172,15 +184,3 @@ function initializeGame(){
   document.getElementsByClassName('deck')[0].appendChild(fragment);
 
 }
-
-
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
