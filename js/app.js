@@ -12,7 +12,20 @@ document.getElementsByClassName('deck')[0].addEventListener('click', cardClick);
 
 document.getElementsByClassName('playAgain')[0].addEventListener('click', initializeGame);
 
-document.getElementsByClassName('restart')[0].addEventListener('click', initializeGame);
+document.getElementsByClassName('restart')[0].addEventListener('click', restartGame);
+
+function restartGame(){
+  clearTimer();
+  initializeGame();
+}
+
+function clearTimer(){
+  clearInterval(t);
+  containers = document.getElementsByClassName('time');
+  for (container of containers){
+    container.innerText = 0;
+  }
+}
 
 function showWinDialog(){
   $('#exampleModalCenter').modal('show');
@@ -23,6 +36,9 @@ function cardClick(e){
   if (e.target.classList.contains('card') && !IsMatched(e) && !IsOpen(e) && openCards.length < 2){
     moves++;
     refreshMoves();
+    if (moves === 1){
+      initializeTimer();
+    }
     openCard(e.target);
   }
 }
@@ -165,7 +181,7 @@ function initializeGame(){
   moves = 0;
   restartStars();
   refreshMoves();
-  initializeTimer();
+  clearTimer();
 
   $('.card').remove();
 
